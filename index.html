@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeerJS Yahtzee</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
+</head>
+<body>
+
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="screen active">
+        <h1>Multiplayer Yahtzee</h1>
+        <div class="card">
+            <label for="initials">Your Initials (1-2 chars):</label>
+            <input type="text" id="initials" maxlength="2" placeholder="AB">
+            
+            <div class="actions">
+                <button id="btn-host" class="primary">Host New Game</button>
+                <div class="divider"><span>OR</span></div>
+                <input type="text" id="join-code" placeholder="Enter Host Code">
+                <button id="btn-join">Join Game</button>
+            </div>
+            <p id="connection-status"></p>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <header>
+            <div class="turn-indicator">
+                <h2>Turn: <span id="current-turn-display">Waiting...</span></h2>
+                <div id="host-code-display" style="display:none;">Room Code: <span></span></div>
+            </div>
+            <div class="timer">
+                Time Left: <span id="timer-display">2:00</span>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <!-- Left: Scoresheet -->
+            <section class="scoresheet-area">
+                <table id="scoresheet">
+                    <thead>
+                        <tr id="scoresheet-header">
+                            <th>Category</th>
+                            <!-- Player initials injected here -->
+                        </tr>
+                    </thead>
+                    <tbody id="scoresheet-body">
+                        <!-- Score rows injected here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Right: Dice Area -->
+            <section class="dice-area">
+                <div class="dice-container" id="dice-container">
+                    <div class="die" data-index="0">1</div>
+                    <div class="die" data-index="1">1</div>
+                    <div class="die" data-index="2">1</div>
+                    <div class="die" data-index="3">1</div>
+                    <div class="die" data-index="4">1</div>
+                </div>
+                <div class="controls">
+                    <p>Rolls left: <span id="rolls-left">3</span></p>
+                    <button id="btn-roll" disabled>Roll Dice</button>
+                </div>
+                <p class="instruction">Click dice to hold/unhold. Click a category on the left to score.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+:root {
+    --bg-color: #f4f4f9;
+    --card-bg: #ffffff;
+    --primary: #2d3436;
+    --accent: #0984e3;
+    --held-bg: #ff7675;
+    --border: #dfe6e9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    color: var(--primary);
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* Setup Screen */
+#setup-screen {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    background: #b2bec3;
+    color: white;
+}
+button.primary { background: var(--accent); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.divider { margin: 20px 0; font-weight: bold; color: #636e72; }
+
+/* Game Screen */
+header {
+    background: var(--primary);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h2 { margin: 0; }
+.timer { font-size: 1.5em; font-weight: bold; color: #fab1a0; }
+
+.game-board {
+    display: flex;
+    padding: 20px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Scoresheet */
+.scoresheet-area {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+}
+th { background: #fdfbfb; }
+.category-name { text-align: left; font-weight: bold; cursor: pointer; }
+.category-name:hover { background: #e9ecef; }
+.score-cell { min-width: 40px; }
+.score-cell.disabled { background: #eee; color: #aaa; }
+
+/* Dice Area */
+.dice-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.dice-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.die {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s, background 0.2s;
+}
+.die.held {
+    background: var(--held-bg);
+    color: white;
+    border-color: #d63031;
+    transform: translateY(10px);
+}
+.die.rolling {
+    animation: shake 0.4s;
+}
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+.instruction { margin-top: 20px; color: #636e72; font-size: 0.9em; }
